@@ -1,19 +1,23 @@
-# Project Title
+S.A.F.E.R (Smart Autonomous Facility Enforcement Robot)
 
-> One-line description of what your project does
+We are a hardware-focused team designing an autonomous robot capable of navagating predefined paths to scan personnel and make sure they are wearing the appropriate PPE required for protocol. This project consists of a multitde of different areas, but we will be mostly working on machine learing and embedded systems.
+
+2. David Zhang (david.zhang@sjsu.edu)
+3. Ricky Liang (ricky.liang@sjsu.edu)
+4. Viet-Joshua Le (viet-joshua.le@sjsu.edu)
 
 ## Team
 
 | Name | GitHub | Email |
 |------|--------|-------|
-| Name 1 | [@username](https://github.com/username) | name@sjsu.edu |
-| Name 2 | [@username](https://github.com/username) | name@sjsu.edu |
-| Name 3 | [@username](https://github.com/username) | name@sjsu.edu |
-| Name 4 | [@username](https://github.com/username) | name@sjsu.edu |
+| Jason Hernandez | [@jahern03](https://github.com/jahern03) | jason1hernandez@outlook.com |
+| David Zhang | [@username](https://github.com/username) | David Zhang |
+| Ricky Liang | [@username](https://github.com/username) | Ricky Liang |
+| Viet-Joshua Le | [@username](https://github.com/username) | viet-joshua.le@sjsu.edu |
 
-**Advisor:** [Advisor Name]
 
----
+**Advisor:** Eric Vanuska (eric.vanuska@sjsu.edu)
+
 
 ## Problem Statement
 
