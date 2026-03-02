@@ -10,9 +10,9 @@ We are a hardware-focused team designing an autonomous robot capable of navagati
 
 | Name | GitHub | Email |
 |------|--------|-------|
-| Jason Hernandez | [@jahern03](https://github.com/jahern03) | jason1hernandez@outlook.com |
-| David Zhang | [@username](https://github.com/username) | David Zhang |
-| Ricky Liang | [@username](https://github.com/username) | Ricky Liang |
+| Jason Hernandez | [@jahern03](https://github.com/jahern03) | jason.a.hernandez@sjsu.edu |
+| David Zhang | [@username](https://github.com/username) | david.zhang@sjsu.edu |
+| Ricky Liang | [@username](https://github.com/username) | ricky.liang@sjsu.edu |
 | Viet-Joshua Le | [@username](https://github.com/username) | viet-joshua.le@sjsu.edu |
 
 
