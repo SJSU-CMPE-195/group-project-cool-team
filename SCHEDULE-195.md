@@ -12,7 +12,7 @@
 
 | Date | Duration | Format | Attendees | Summary | Action Items |
 |------|----------|--------|-----------|---------|--------------|
-| | | In-person / Remote | | | |
+| 3/5  | 15 Mins  | Remote | All Members | Went over report, general questions, and checkpoints| Start list for project|
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
@@ -147,3 +147,4 @@
 - [ ] [Task] - [Owner] - [Due]
 
 ---
+/
