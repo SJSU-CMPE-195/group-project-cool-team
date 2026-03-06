@@ -15,7 +15,7 @@
 
 | Date | Duration | Format | Attendees | Summary | Action Items |
 |------|----------|--------|-----------|---------|--------------|
-| 3/5  | 15 Mins  | Remote | All Members | Went over report, general questions, and checkpoints| Start list for project|
+| 2/27 | 15 Mins  | Remote | Jason | Went over idea of the project, general questions concering the project, and checkpoints for project| Start list for project|
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
@@ -34,7 +34,7 @@
 
 | Date | Duration | Format | Attendees | Summary | Action Items |
 |------|----------|--------|-----------|---------|--------------|
-| | | In-person / Remote | | | |
+| 3/5  | 15 Mins  | Remote | All Members | Went over report, general questions, and checkpoints| Start list for project|
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
