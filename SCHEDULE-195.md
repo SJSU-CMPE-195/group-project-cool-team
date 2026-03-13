@@ -15,8 +15,8 @@
 
 | Date | Duration | Format | Attendees | Summary | Action Items |
 |------|----------|--------|-----------|---------|--------------|
-| 2/27 | 15 Mins  | Remote | Jason | Went over idea of the project, general questions concering the project, and checkpoints for project| Start list for project|
-| | | In-person / Remote | | | |
+| 2/27 | 15 Mins  | Remote | Jason + Advisor | Went over idea of the project, general questions concering the project, and checkpoints for project| Start list for project|
+| 3/13 | 25 Mins  | Remote | All + Advisor |Went over Project Report, any concerns regarding the proejct, and first project / individal checkpoints. Need to start creating DB and image recognition.
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
@@ -34,8 +34,9 @@
 
 | Date | Duration | Format | Attendees | Summary | Action Items |
 |------|----------|--------|-----------|---------|--------------|
+| 2/27 | 10 Mins  | Remote | All Members | Catching up with current assignments, planning a blueprint for project |
 | 3/5  | 15 Mins  | Remote | All Members | Went over report, general questions, and checkpoints| Start list for project|
-| | | In-person / Remote | | | |
+| 3/13 | 30 Mins  | Remote | All members | All members started brainstorming ideas for the robot. Start creating the fundementals for the facial recognition.
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
 | | | In-person / Remote | | | |
