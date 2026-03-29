@@ -1,0 +1,42 @@
+Data Sets and Other sources for machine training 
+https://www.kaggle.com/search?q=hardhat
+We're using this for data to train our own classification model. 
+This website contains open source projects with data for us to use. 
+
+Whats a Classification Model?
+About classification models: 
+A classification model is a machine learning model that looks at an image and predicts one label for the whole image. It answers “what is in this image?” but it does not tell where the object is.
+
+Example (PPE):
+If we give the model a photo, it might output:
+
+“hard hat: yes” or “hard hat: no”
+“vest: yes” or “vest: no”
+
+Why it’s limited:
+Classification works well when the image has one main subject and the question is simple. But in a real job site image with multiple workers, a single label is not enough because it can’t tell:
+
+which worker has the hard hat
+if everyone has one
+if the hard hat is being worn (on the head) versus just visible somewhere in the scene
+
+
+Introduction to Object Detection in Deep Learning
+https://www.youtube.com/watch?v=t-phGBfPEZ4 
+A classifier might only say:
+“hard hat: yes”
+
+But that’s not enough, because:
+Who has the hard hat?
+Do all workers have one?
+Is it on the right spot (on the head), or just lying on a table?
+
+Object detection would output multiple boxes, like:
+Person #1 (box)
+Person #2 (box)
+Person #3 (box)
+Hard hat (box) near person #1’s head
+Hard hat (box) near person #2’s head
+(no hard hat found near person #3) → flag as missing PPE
+
+
