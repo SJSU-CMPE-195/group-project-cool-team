@@ -1,0 +1,39 @@
+Kaggle Notebooks (Training + Inference References)
+YOLOv8 Training (Fine-tuning for PPE Detection)
+- https://www.kaggle.com/code/hinepo/yolov8-finetuning-for-ppe-detection
+Use: Shows how to fine-tune YOLOv8 on a PPE dataset (training setup, config, metrics, saving weights).
+
+YOLOv8 Inference + Application Logic (Red Zone)
+- https://www.kaggle.com/code/hinepo/yolov8-inference-for-red-zone-application
+Use: Shows how to run inference with trained YOLOv8 weights and apply rule-based logic (ex: zones/violations) on detections.
+PPE Datasets (Kaggle) — sorted by gear type
+
+HARD HAT / SAFETY HELMET
+- https://www.kaggle.com/datasets/andrewmvd/hard-hat-detection
+- https://www.kaggle.com/datasets/adilshamim8/safety-helmet-detection-for-construction-sites
+- https://www.kaggle.com/datasets/itbetyar/project-safety-hat
+
+SAFETY VEST / HI-VIS VEST
+- https://www.kaggle.com/datasets/adilshamim8/safety-vests-detection-dataset
+- https://www.kaggle.com/datasets/fercypher/safety-vest-dataset
+
+HELMET + VEST (BASIC CONSTRUCTION PPE)
+- https://www.kaggle.com/datasets/johnsyin97/hardhat-and-safety-vest-image-for-object-detection
+- https://www.kaggle.com/datasets/muhammetzahitaydn/hardhat-vest-dataset-v3
+- https://www.kaggle.com/datasets/maryamborzoo/safety-helmet-and-vest
+- https://www.kaggle.com/datasets/niravnaik/safety-helmet-and-reflective-jacket
+
+FACE MASK / FACE COVERING (can act as “mask/respirator” class)
+- https://www.kaggle.com/datasets/andrewmvd/face-mask-detection
+- https://www.kaggle.com/datasets/ashokkumarmalineni/face-coveringsaccessories-detection
+- https://www.kaggle.com/datasets/wobotintelligence/face-mask-detection-dataset
+
+SAFETY GLASSES / EYEWEAR (closest match; not always industrial goggles)
+- https://www.kaggle.com/datasets/mantasu/glasses-and-coverings
+
+MULTI-PPE DATASETS (best for one model that detects several items)
+- https://www.kaggle.com/datasets/shlokraval/ppe-dataset
+- https://www.kaggle.com/datasets/shlokraval/ppe-dataset-yolov8
+- https://www.kaggle.com/datasets/ketakichalke/ppe-kit-detection-construction-site-workers
+- https://www.kaggle.com/datasets/beyzakucuk/ppe-detection-v1
+- https://www.kaggle.com/datasets/mugheesahmad/sh17-dataset-for-ppe-detection
