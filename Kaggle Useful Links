@@ -27,6 +27,8 @@ FACE MASK / FACE COVERING (can act as “mask/respirator” class)
 - https://www.kaggle.com/datasets/andrewmvd/face-mask-detection
 - https://www.kaggle.com/datasets/ashokkumarmalineni/face-coveringsaccessories-detection
 - https://www.kaggle.com/datasets/wobotintelligence/face-mask-detection-dataset
+https://www.kaggle.com/datasets/skaarface/medical-personal-protective-equipment-images
+
 
 SAFETY GLASSES / EYEWEAR (closest match; not always industrial goggles)
 - https://www.kaggle.com/datasets/mantasu/glasses-and-coverings
@@ -37,3 +39,4 @@ MULTI-PPE DATASETS (best for one model that detects several items)
 - https://www.kaggle.com/datasets/ketakichalke/ppe-kit-detection-construction-site-workers
 - https://www.kaggle.com/datasets/beyzakucuk/ppe-detection-v1
 - https://www.kaggle.com/datasets/mugheesahmad/sh17-dataset-for-ppe-detection
+
