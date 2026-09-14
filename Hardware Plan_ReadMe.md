@@ -313,7 +313,7 @@ Useful YouTube searches for STM32 robot development:
 - [STM32 Nucleo Robot Car](https://www.youtube.com/results?search_query=STM32+Nucleo+robot+car+tutorial)
 - [STM32 + L298N Robot Car](https://www.youtube.com/results?search_query=STM32+L298N+robot+car+tutorial)
 - [STM32 Ultrasonic Autonomous Robot](https://www.youtube.com/results?search_query=STM32+ultrasonic+autonomous+robot+car)
-
+- https://www.youtube.com/watch?v=xbl8_I_S8K0
 ---
 
 ## Recommended Starting Setup
