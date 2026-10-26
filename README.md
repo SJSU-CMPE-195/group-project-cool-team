@@ -95,21 +95,6 @@ make            # install + compile + 130 tests + 20 s mock patrol
 | `make models` | (optional) re-exports the ONNX models from `yolo8n.pt` |
 | `make clean` | removes `.venv`, caches and mock output |
 
-### On the robot (Raspberry Pi 5)
-1. Clone the repository on the Pi: `git clone https://github.com/SJSU-CMPE-195/group-project-cool-team.git`
-2. Install system packages and create the venv. It **must** use `--system-site-packages` so picamera2 keeps its numpy 1.x:
-   ```bash
-   sudo apt install -y python3-opencv python3-requests python3-numpy
-   python3 -m venv --system-site-packages ~/ppe-venv
-   ~/ppe-venv/bin/pip install -r Code/Server/requirements-pi.txt
-   ~/ppe-venv/bin/pip list --local     # must NOT list numpy or opencv-python
-   ```
-3. Configure the AI model. The ONNX exports are already in `Code/Server/models/`. To rebuild them, run `make models` on a PC.
-4. Configure the camera. Connect the camera module to the Pi 5 and check that capture works before running detection: `python ppe_camera.py --source picamera`.
-5. Configure the robot. Run the stock `python main.py` once from `Code/Server`, interactively, to create `params.json`. Then create `Code/Server/ppe_config.local.json` with the portal URL and API key (see `docs/PPE_PATROL.md` §3c).
-6. Connect the hardware. Assemble the Freenove kit following `Tutorial(ordinary_wheels).pdf`, and check that the motors, servos and ultrasonic sensor respond before you start a patrol.
-7. On the PC, start the portal (`pip install -r Portal/requirements.txt`, then `python Portal/app.py`). Allow inbound TCP 5050 through the firewall.
-
 ## Running the Prototype
 ```bash
 cd Code/Server
