@@ -1,0 +1,9 @@
+# Admin portal (runs on the PC, not the Pi)
+Flask>=3.0
+Pillow>=10.0
+requests>=2.31
+
+# Optional: a production-grade WSGI server that works natively on Windows,
+# unlike gunicorn. Use this instead of the Flask dev server for always-on:
+#   pip install waitress
+#   waitress-serve --listen=0.0.0.0:5050 --call Portal.app:create_app

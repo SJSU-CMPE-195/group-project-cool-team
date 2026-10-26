@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Violation {{ v.id }} &middot; PPE Patrol{% endblock %}
+{% block content %}
+
+<div class="detail-head">
+  <a class="btn" href="{{ url_for('gallery') }}">&larr; All violations</a>
+  <div class="spacer"></div>
+  {% if newer %}<a class="btn" href="{{ url_for('detail', violation_id=newer) }}">Newer</a>{% endif %}
+  {% if older %}<a class="btn" href="{{ url_for('detail', violation_id=older) }}">Older</a>{% endif %}
+</div>
+
+<div class="detail">
+  <div class="evidence">
+    {# The stored image is the raw frame; the box is drawn here as an overlay
+       from the recorded coordinates, so the evidence stays unannotated and
+       re-reviewable. #}
+    <div class="imgwrap">
+      <img src="{{ url_for('image', rel=v.image_path) }}" alt="violation {{ v.id }}">
+      {% if v.bbox_x1 is not none and v.frame_w %}
+      <div class="bbox" style="
+        left:{{ (v.bbox_x1 / v.frame_w * 100) | round(3) }}%;
+        top:{{ (v.bbox_y1 / v.frame_h * 100) | round(3) }}%;
+        width:{{ ((v.bbox_x2 - v.bbox_x1) / v.frame_w * 100) | round(3) }}%;
+        height:{{ ((v.bbox_y2 - v.bbox_y1) / v.frame_h * 100) | round(3) }}%;">
+        <span>{{ v.missing_ppe.replace(',', ' + ') | upper }}</span>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <aside class="panel">
+    <h1>Missing: {{ v.missing_ppe.replace(',', ', ') }}</h1>
+
+    <table class="kv">
+      <tr><th>Captured</th><td>{{ v.captured_at[:19].replace('T', ' ') }} UTC
+        {% if not v.clock_synced %}<span class="warn-pill">clock not synced</span>{% endif %}</td></tr>
+      <tr><th>Received</th><td>{{ v.received_at[:19].replace('T', ' ') }} UTC</td></tr>
+      <tr><th>Robot</th><td>{{ v.robot_id }}</td></tr>
+      {% if v.zone_label %}<tr><th>Zone</th><td>{{ v.zone_label }}</td></tr>{% endif %}
+      {% if v.person_conf %}<tr><th>Person conf</th><td>{{ v.person_conf | round(3) }}</td></tr>{% endif %}
+      {% if v.battery_v %}<tr><th>Battery</th><td>{{ v.battery_v | round(2) }} V</td></tr>{% endif %}
+      {% if v.cpu_temp_c %}<tr><th>CPU temp</th><td>{{ v.cpu_temp_c | round(1) }} &deg;C</td></tr>{% endif %}
+      <tr><th>Event ID</th><td class="mono small">{{ v.event_id }}</td></tr>
+    </table>
+
+    <h2>Evidence</h2>
+    <table class="kv items">
+      {% for it in items %}
+      <tr>
+        <th>{{ it.item }}</th>
+        <td>
+          <span class="status {{ it.status }}">{{ it.status.replace('_', ' ') | lower }}</span>
+          {% if it.frames_agree %}<span class="sub">{{ it.frames_agree }} frames agree</span>{% endif %}
+          {% if it.reason %}<div class="reason">{{ it.reason }}</div>{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% if items | selectattr('status', 'equalto', 'MISSING_ABSENT') | list %}
+    <p class="note">
+      <strong>Absence-based.</strong> This item was judged missing because no
+      matching equipment was detected, not because uncovered skin was seen.
+      That is weaker evidence &mdash; worth checking the image carefully.
+    </p>
+    {% endif %}
+
+    <h2>Review</h2>
+    <form method="post" action="{{ url_for('review', violation_id=v.id) }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <div class="radios">
+        {% for value, label in review_labels.items() %}
+        <label class="radio">
+          <input type="radio" name="reviewed" value="{{ value }}"
+                 {% if v.reviewed == value %}checked{% endif %}>
+          {{ label }}
+        </label>
+        {% endfor %}
+      </div>
+      <textarea name="notes" rows="3" placeholder="Notes (optional)">{{ v.notes or '' }}</textarea>
+      <button class="btn primary" type="submit">Save review</button>
+    </form>
+
+    <details class="raw">
+      <summary>Raw metadata</summary>
+      <pre class="mono">{{ meta_pretty }}</pre>
+    </details>
+  </aside>
+</div>
+{% endblock %}

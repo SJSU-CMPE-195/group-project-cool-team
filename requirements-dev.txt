@@ -1,0 +1,8 @@
+# Desktop dependencies for grading: tests, mock run and the admin portal.
+# The robot itself uses Code/Server/requirements-pi.txt instead.
+numpy>=1.24
+opencv-python-headless>=4.8
+onnxruntime>=1.17,<2
+Flask>=3.0
+Pillow>=10.0
+requests>=2.31

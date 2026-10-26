@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ code }} &middot; PPE Patrol{% endblock %}
+{% block content %}
+<div class="empty">
+  <h1>{{ code }}</h1>
+  <p>{{ message }}</p>
+  <a class="btn" href="{{ url_for('gallery') }}">Back to violations</a>
+</div>
+{% endblock %}

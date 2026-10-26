@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Violations &middot; PPE Patrol{% endblock %}
+{% block content %}
+
+<section class="summary">
+  <div class="stat"><span class="n">{{ summary.total }}</span><span class="l">total</span></div>
+  <div class="stat new"><span class="n">{{ summary.new }}</span><span class="l">unreviewed</span></div>
+  <div class="stat ok"><span class="n">{{ summary.confirmed }}</span><span class="l">confirmed</span></div>
+  <div class="stat bad"><span class="n">{{ summary.false_positive }}</span><span class="l">false positive</span></div>
+  {% if summary.precision is not none %}
+  <div class="stat"><span class="n">{{ (summary.precision * 100) | round(0) | int }}%</span><span class="l">precision</span></div>
+  {% endif %}
+  {% for r in summary.robots %}
+  <div class="stat robot">
+    <span class="n">{{ r.last_battery_v | round(2) if r.last_battery_v else '--' }}V</span>
+    <span class="l">{{ r.robot_id }}</span>
+  </div>
+  {% endfor %}
+</section>
+
+<form class="filters" method="get">
+  <label>Missing
+    <select name="item">
+      <option value="">any</option>
+      {% for i in all_items %}
+      <option value="{{ i }}" {% if filters.item == i %}selected{% endif %}>{{ i }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Robot
+    <select name="robot">
+      <option value="">any</option>
+      {% for r in all_robots %}
+      <option value="{{ r }}" {% if filters.robot == r %}selected{% endif %}>{{ r }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Review
+    <select name="reviewed">
+      <option value="all">any</option>
+      {% for value, label in review_labels.items() %}
+      <option value="{{ value }}" {% if filters.reviewed == value|string %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>From <input type="date" name="from" value="{{ filters.date_from or '' }}"></label>
+  <label>To <input type="date" name="to" value="{{ filters.date_to or '' }}"></label>
+  <button class="btn primary" type="submit">Filter</button>
+  <a class="btn" href="{{ url_for('gallery') }}">Reset</a>
+  <a class="btn" href="{{ url_for('export_csv', **request.args) }}">CSV</a>
+</form>
+
+{% if not rows %}
+  <div class="empty">
+    <h2>No violations {% if filters.values() | select | list %}match these filters{% else %}yet{% endif %}</h2>
+    <p>Snapshots appear here as the robot confirms them.</p>
+  </div>
+{% else %}
+  <p class="resultcount">{{ total }} violation{{ '' if total == 1 else 's' }}</p>
+  <div class="grid">
+    {% for v in rows %}
+    <a class="card review-{{ v.reviewed }}" href="{{ url_for('detail', violation_id=v.id) }}">
+      <div class="thumb">
+        <img loading="lazy" alt="violation {{ v.id }}"
+             src="{{ url_for('thumb', rel=v.thumb_path) if v.thumb_path else url_for('image', rel=v.image_path) }}">
+        <span class="badge">{{ v.missing_ppe.replace(',', ' + ') }}</span>
+        {% if v.reviewed == 2 %}<span class="badge fp">false positive</span>{% endif %}
+      </div>
+      <div class="meta">
+        <time>{{ v.captured_at[:19].replace('T', ' ') }}</time>
+        <span class="sub">
+          {{ v.robot_id }}{% if v.zone_label %} &middot; {{ v.zone_label }}{% endif %}
+          {% if not v.clock_synced %}<span class="warn-pill" title="Robot clock was not NTP-synced">clock?</span>{% endif %}
+        </span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% if pages > 1 %}
+  <nav class="pager">
+    {% set args = request.args.to_dict() %}
+    {% if page > 1 %}
+      {% set _ = args.update({'page': page - 1}) %}
+      <a class="btn" href="{{ url_for('gallery', **args) }}">Newer</a>
+    {% endif %}
+    <span>Page {{ page }} of {{ pages }}</span>
+    {% if page < pages %}
+      {% set _ = args.update({'page': page + 1}) %}
+      <a class="btn" href="{{ url_for('gallery', **args) }}">Older</a>
+    {% endif %}
+  </nav>
+  {% endif %}
+{% endif %}
+{% endblock %}

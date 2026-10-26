@@ -161,3 +161,49 @@ docker-data/
 # Project Specific
 # ===========================
 # Add project-specific ignores below
+
+# ---- From SafetyRobot ----
+# ---- Models -------------------------------------------------------------
+# Deploy to the Pi is "git pull", so the PPE model and its ONNX exports are
+# committed deliberately. yolo11s.pt is stock COCO (no PPE classes) and is
+# 19MB of dead weight -- excluded.
+*.pt
+!yolo8n.pt
+!modeldraft/best.pt
+yolo11s.pt
+
+# ---- Python -------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# ---- Hardware / local config (machine specific, never commit) -----------
+params.json
+Code/Server/ppe_config.local.json
+
+# ---- Runtime artefacts --------------------------------------------------
+Code/Server/snapshots/
+Code/Client/video.jpg
+*.log
+
+# ---- Portal (runs on the PC; data and secrets stay local) ---------------
+Portal/instance/
+Portal/data/
+*.sqlite3
+*.db
+
+# ---- OS -----------------------------------------------------------------
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Freenove ships prebuilt standalone GUI clients (a 99MB macOS binary and a
+# 70MB .exe). GitHub warns above 50MB and blocks at 100MB, and they are pure
+# convenience: the Python source for that same client is in Code/Client/.
+Application/
+
+# Local virtualenv created by the Makefile
+.venv/

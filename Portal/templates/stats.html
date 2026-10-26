@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Stats &middot; PPE Patrol{% endblock %}
+{% block content %}
+<h1>Statistics</h1>
+
+<section class="summary">
+  <div class="stat"><span class="n">{{ s.total }}</span><span class="l">total</span></div>
+  <div class="stat new"><span class="n">{{ s.new }}</span><span class="l">unreviewed</span></div>
+  <div class="stat ok"><span class="n">{{ s.confirmed }}</span><span class="l">confirmed</span></div>
+  <div class="stat bad"><span class="n">{{ s.false_positive }}</span><span class="l">false positive</span></div>
+</section>
+
+<h2>Detection precision</h2>
+{% if s.precision is none %}
+  <p class="note">
+    Nothing reviewed yet. Mark some violations as confirmed or false positive
+    and a precision figure appears here. Get that number before tuning
+    thresholds or enabling an absence-only item like <span class="mono">safety-vest</span>
+    &mdash; otherwise you are guessing.
+  </p>
+{% else %}
+  <p class="big">{{ (s.precision * 100) | round(1) }}%
+    <span class="sub">({{ s.confirmed }} of {{ s.reviewed_total }} reviewed were real)</span></p>
+{% endif %}
+
+<h2>By missing item</h2>
+{% if s.by_item %}
+<table class="kv">
+  {% for item, n in s.by_item.items() %}
+  <tr><th>{{ item }}</th><td>{{ n }}</td></tr>
+  {% endfor %}
+</table>
+{% else %}<p class="sub">No data.</p>{% endif %}
+
+<h2>By day</h2>
+{% if s.by_day %}
+{% set peak = s.by_day | map(attribute='n') | max %}
+<div class="bars">
+  {% for d in s.by_day %}
+  <div class="bar-row">
+    <span class="bar-label mono">{{ d.day }}</span>
+    <span class="bar" style="width: {{ (d.n / peak * 100) | round(1) }}%"></span>
+    <span class="bar-n">{{ d.n }}</span>
+  </div>
+  {% endfor %}
+</div>
+{% else %}<p class="sub">No data.</p>{% endif %}
+
+<h2>Robots</h2>
+{% if s.robots %}
+<table class="kv">
+  {% for r in s.robots %}
+  <tr><th>{{ r.robot_id }}</th><td>
+    {{ r.total_events }} events &middot; last seen
+    {{ r.last_seen[:19].replace('T', ' ') if r.last_seen else 'never' }}
+    {% if r.last_battery_v %}&middot; {{ r.last_battery_v | round(2) }} V{% endif %}
+    {% if r.last_cpu_temp_c %}&middot; {{ r.last_cpu_temp_c | round(1) }} &deg;C{% endif %}
+  </td></tr>
+  {% endfor %}
+</table>
+{% else %}<p class="sub">No robot has reported yet.</p>{% endif %}
+{% endblock %}

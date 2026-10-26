@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Live &middot; PPE Patrol{% endblock %}
+{% block content %}
+<h1>Live view</h1>
+<p class="sub">
+  Proxied from the robot at <span class="mono">{{ robot_url }}</span>.
+  Boxes and PPE verdicts are drawn on the robot, so this is exactly what the
+  detector sees.
+</p>
+<div class="livewrap">
+  <img id="live" src="{{ url_for('live_stream') }}" alt="live robot view">
+  <div id="offline" class="offline" hidden>
+    <h2>Robot offline</h2>
+    <p>No MJPEG stream at <span class="mono">{{ robot_url }}</span>.</p>
+    <p class="sub">
+      Check that the patrol is running
+      (<span class="mono">python ppe_main.py</span>) and that
+      <span class="mono">PPE_ROBOT_MJPEG</span> points at the right address.
+    </p>
+    <button class="btn" onclick="retry()">Retry</button>
+  </div>
+</div>
+<script>
+  const img = document.getElementById('live');
+  const off = document.getElementById('offline');
+  img.addEventListener('error', () => { img.hidden = true; off.hidden = false; });
+  function retry() {
+    off.hidden = true; img.hidden = false;
+    img.src = "{{ url_for('live_stream') }}?t=" + Date.now();
+  }
+</script>
+{% endblock %}

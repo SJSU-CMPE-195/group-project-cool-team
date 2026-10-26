@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}PPE Patrol{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('gallery') }}">
+    <span class="dot"></span> PPE Patrol
+  </a>
+  <nav>
+    <a href="{{ url_for('gallery') }}">Violations</a>
+    <a href="{{ url_for('live_page') }}">Live</a>
+    <a href="{{ url_for('stats_page') }}">Stats</a>
+  </nav>
+  {% if auth_enabled and authed %}
+  <form method="post" action="{{ url_for('logout') }}" class="logout">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button type="submit">Log out</button>
+  </form>
+  {% elif not auth_enabled %}
+  <span class="warn-pill" title="Set PPE_ADMIN_PASSWORD to require a login">no auth</span>
+  {% endif %}
+</header>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flashes">
+      {% for m in messages %}<div class="flash">{{ m }}</div>{% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<main>{% block content %}{% endblock %}</main>
+
+<footer>
+  Autonomous PPE compliance patrol &middot; detections are advisory and should
+  be reviewed by a person before any action is taken.
+</footer>
+</body>
+</html>

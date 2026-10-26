@@ -1,0 +1,32 @@
+# Runtime dependencies for the PPE patrol, on the Raspberry Pi.
+#
+# Install into a venv created with --system-site-packages, so that picamera2,
+# gpiozero, PyQt5 and the system numpy/opencv stay importable:
+#
+#   sudo apt install -y python3-opencv python3-requests python3-numpy
+#   python3 -m venv --system-site-packages ~/ppe-venv
+#   ~/ppe-venv/bin/pip install -r Code/Server/requirements-pi.txt
+#
+# Then CHECK that pip did not shadow the system packages:
+#
+#   ~/ppe-venv/bin/pip list --local
+#
+# That list must NOT contain numpy or opencv-python. Bookworm's picamera2 is
+# compiled against numpy 1.x, and letting pip pull numpy 2.x in breaks camera
+# capture with ABI errors that look like a hardware fault. If it happens:
+#   pip uninstall numpy opencv-python
+#   pip install --no-deps onnxruntime
+#
+# Deliberately NOT here: ultralytics and torch. They are only needed to export
+# the model, which happens once on the PC (see Tools/export_onnx.py).
+# ultralytics also depends on opencv-python and numpy>=2, so installing it on
+# the Pi would break the camera.
+
+onnxruntime>=1.17,<2
+
+# Provided by apt, listed for the record:
+#   python3-opencv     (cv2)
+#   python3-numpy      (numpy 1.x -- do not upgrade)
+#   python3-requests   (uploader)
+#   python3-picamera2  (camera, preinstalled on Bookworm)
+#   python3-gpiozero   (ultrasonic, buzzer, line sensors)

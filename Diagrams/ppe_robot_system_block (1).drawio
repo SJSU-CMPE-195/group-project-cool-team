@@ -1,0 +1,102 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 OPR/128.0.0.0" version="29.6.6">
+  <diagram id="ppe-robot-system-1" name="Page-1">
+    <mxGraphModel dx="2012" dy="1168" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#111827;fontSize=24;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" value="Autonomous PPE Safety Robot — System Block Diagram" vertex="1">
+          <mxGeometry height="40" width="880" x="520" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#475569;fontSize=13;align=center;verticalAlign=middle;whiteSpace=wrap;" value="Planning-phase architecture using STM32 + ESP32-CAM + mobile robot hardware" vertex="1">
+          <mxGeometry height="24" width="700" x="610" y="58" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#0F172A;fontSize=16;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" value="SENSING" vertex="1">
+          <mxGeometry height="24" width="220" x="120" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#0F172A;fontSize=16;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" value="PROCESSING &amp; CONTROL" vertex="1">
+          <mxGeometry height="24" width="320" x="780" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#0F172A;fontSize=16;align=center;verticalAlign=middle;whiteSpace=wrap;fontStyle=1;" value="ACTUATION / OUTPUT" vertex="1">
+          <mxGeometry height="24" width="280" x="1420" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="cam" parent="1" style="whiteSpace=wrap;html=1;rounded=1;dashed=0;fillColor=#DBEAFE;strokeColor=#1D4ED8;fontColor=#111827;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" value="ESP32-CAM Image capture On-device PPE inference" vertex="1">
+          <mxGeometry height="120" width="260" x="90" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="ultra" parent="1" style="whiteSpace=wrap;html=1;rounded=1;dashed=0;fillColor=#E0F2FE;strokeColor=#0369A1;fontColor=#111827;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" value="Ultrasonic Sensors Distance measurement Obstacle detection" vertex="1">
+          <mxGeometry height="120" width="260" x="90" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="chassis" parent="1" style="whiteSpace=wrap;html=1;rounded=1;dashed=0;fillColor=#F3F4F6;strokeColor=#6B7280;fontColor=#111827;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" value="Standard Robot Car Kit Mechanical platform Mounting + wiring base" vertex="1">
+          <mxGeometry height="110" width="260" x="90" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="stm" parent="1" style="whiteSpace=wrap;html=1;rounded=1;dashed=0;fillColor=#DCFCE7;strokeColor=#15803D;fontColor=#111827;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" value="STM32 Microcontroller Main control logic Sensor fusion + motion decisions" vertex="1">
+          <mxGeometry height="120" width="300" x="930" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="decision" parent="1" style="whiteSpace=wrap;html=1;rounded=1;dashed=0;fillColor=#ECFCCB;strokeColor=#4D7C0F;fontColor=#111827;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" value="PPE Compliance / Navigation Logic Combine camera result + obstacle status Select robot action" vertex="1">
+          <mxGeometry height="120" width="300" x="930" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="host" parent="1" style="whiteSpace=wrap;html=1;rounded=1;dashed=1;fillColor=#FAE8FF;strokeColor=#A21CAF;fontColor=#111827;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" value="Optional Host PC / Dashboard Logs, tuning, future monitoring UI" vertex="1">
+          <mxGeometry height="110" width="380" x="890" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="driver" parent="1" style="whiteSpace=wrap;html=1;rounded=1;dashed=0;fillColor=#FEE2E2;strokeColor=#B91C1C;fontColor=#111827;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" value="L298N Motor Driver Dual H-bridge interface Power delivery to motors" vertex="1">
+          <mxGeometry height="120" width="270" x="1420" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="motors" parent="1" style="whiteSpace=wrap;html=1;rounded=1;dashed=0;fillColor=#FFEDD5;strokeColor=#C2410C;fontColor=#111827;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" value="DC Gear Motors Chassis movement Forward / reverse / turn" vertex="1">
+          <mxGeometry height="120" width="270" x="1420" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="alerts" parent="1" style="whiteSpace=wrap;html=1;rounded=1;dashed=0;fillColor=#FEF3C7;strokeColor=#B45309;fontColor=#111827;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" value="Robot Behavior Output Patrol / stop / avoid obstacle Flag PPE violation state" vertex="1">
+          <mxGeometry height="110" width="270" x="1420" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="cam" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=0;fontSize=12;fontColor=#334155;" target="stm" value="camera stream / PPE result">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="ultra" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=0;fontSize=12;fontColor=#334155;" target="stm" value="distance data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="stm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=0;fontSize=12;fontColor=#334155;" target="decision" value="control state">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=0;fontSize=12;fontColor=#334155;" target="driver" value="left/right motor commands">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="driver" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=0;fontSize=12;fontColor=#334155;" target="motors" value="power + direction control">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=0;fontSize=12;fontColor=#334155;" target="alerts" value="robot motion state">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1555" y="630" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="decision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=1;fontSize=12;fontColor=#334155;" target="alerts" value="violation / avoidance action">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="stm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=1;fontSize=12;fontColor=#334155;" target="host" value="telemetry / logs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="cam" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=1;fontSize=12;fontColor=#334155;" target="host" value="captured frames">
+          <mxGeometry relative="1" x="0.0682" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="910" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="chassis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=1;fontSize=12;fontColor=#334155;" target="cam" value="mounted on robot">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="chassis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=1;fontSize=12;fontColor=#334155;" target="ultra" value="mounted on robot">
+          <mxGeometry relative="1" y="-50" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="chassis" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;dashed=1;fontSize=12;fontColor=#334155;" target="motors" value="mechanical integration">
+          <mxGeometry relative="1" x="-0.4328" y="5" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" parent="1" style="whiteSpace=wrap;html=1;rounded=1;dashed=0;fillColor=#FFFFFF;strokeColor=#CBD5E1;fontColor=#111827;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;spacing=8;" value="Solid lines: primary runtime path Dashed lines: mechanical or optional expansion paths" vertex="1">
+          <mxGeometry height="72" width="300" x="1460" y="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
