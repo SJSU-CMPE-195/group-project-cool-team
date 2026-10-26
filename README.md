@@ -134,11 +134,11 @@ make test
 None of these tests need the robot. Some print messages like `sensor on fire`; those come from intentional fault-injection tests.
 
 ## Demo
-Robot movement
-https://drive.google.com/file/d/16Pb2mHKq-dU93Ou7mKjEGqk2harKwBWZ/view?usp=drive_link
+**Autonomous navigation and obstacle avoidance:** the built robot navigating with object detection running, stopping just before it hits obstacles.
+- https://drive.google.com/file/d/1LniFDaX6oen-bgjoeET2wxvGK0oPmdRs/view?usp=drive_link
 
-Robot detection
-https://drive.google.com/file/d/18PW9icEMwUT42s9Ouafg7MPGTVbfdUNK/view?usp=drive_link
+**Servo tracking and live PPE detection:** the built robot with its servos working. It looks around and locks onto people while running PPE (safety gear) detection live. The annotated camera feed is streamed locally over HTML, so we can watch what the detector sees.
+- https://drive.google.com/file/d/1PDEvJdE0BhoLxZ3X0HmEzh4dVs2YntvA/view?usp=sharing
 
 ## Technical Stack
 **Hardware**
