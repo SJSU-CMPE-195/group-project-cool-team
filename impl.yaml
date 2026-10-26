@@ -1,0 +1,54 @@
+project: S.A.F.E.R (Smart Autonomous Facility Enforcement Robot)
+tag: impl2-v1
+
+impl_claim: >
+  A Raspberry Pi 5 on a Freenove 4WD chassis wanders an area on its own and
+  steers away from obstacles closer than 35 cm, using an ultrasonic sensor.
+  When the camera sees a person, the robot stops and runs a YOLOv8n PPE model
+  (17 SH17 classes, ONNX through onnxruntime) on each frame. It flags a hard
+  hat violation when a bare "head" box with no "helmet" box over it is seen in
+  at least 5 of 10 consecutive frames. When a violation is confirmed, the
+  robot sounds its buzzer, saves the frame as a JPEG plus JSON metadata (the
+  detection boxes and the reason for the call) to an on-disk queue, and
+  uploads it to a Flask/SQLite admin portal, which draws the boxes over the
+  image. The portal lists every violation, and a reviewer marks each one
+  confirmed or false positive. Those review flags are used to compute
+  precision. If no head or helmet is visible, the robot makes no call.
+
+hardware_required: true
+
+commands:
+  install: make install
+  build: make compile
+  test: make test          # 130 unit tests, no hardware
+  run: make portal         # admin portal at http://127.0.0.1:5050 with demo data
+
+mock_mode:
+  command: make mock
+  description: >
+    Runs the real vision, rules, tracker and patrol state machine code, with
+    three stand-ins: a simulated car (motors, servos, sonar, buzzer), a still
+    image looped as the camera, and snapshots kept on disk instead of
+    uploaded. The bundled image shows a worker wearing a hard hat, so the
+    expected result is "helmet=PRESENT" on every frame and "violations found
+    0". To see a violation instead, run
+    "make mock MOCK_IMAGE=path/to/photo.jpg" with a photo of someone without
+    a hard hat; the snapshot lands in Code/Server/snapshots/pending/.
+
+notes: >
+  The physical patrol needs the robot hardware: a Raspberry Pi 5, Pi camera,
+  the Freenove 4WD kit (PCA9685 motor/servo board, ultrasonic sensor,
+  pan/tilt servos, buzzer) and 18650 batteries. It is shown in the demo
+  videos linked in the README. This repo has no microcontroller firmware: the
+  Pi drives the motors and servos directly through the PCA9685 board, so
+  there is nothing to flash. "make compile" byte-compiles every Python source.
+  The vendored C library Code/Libs/rpi-ws281x-python (LED driver) builds only
+  on a Raspberry Pi and is not part of grading. Every command needs Python
+  3.10+ and GNU make (on Windows, use Git Bash), plus network access for
+  "make install". The ONNX models are already committed; "make models" is
+  optional and downloads about 2 GB. No credentials are needed for any
+  command; see .env.example for the optional portal settings.
+
+demo_videos:
+  - https://drive.google.com/file/d/1LniFDaX6oen-bgjoeET2wxvGK0oPmdRs/view?usp=drive_link
+  - https://drive.google.com/file/d/1PDEvJdE0BhoLxZ3X0HmEzh4dVs2YntvA/view?usp=sharing
