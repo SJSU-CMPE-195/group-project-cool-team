@@ -8,51 +8,6 @@
 
 **Advisor:** Eric Vanuska (eric.vanuska@sjsu.edu)
 
-## Grading Summary
-
-```yaml
-impl_claim: >
-  A Raspberry Pi 5 on a Freenove 4WD chassis wanders an area on its own and
-  steers away from obstacles closer than 35 cm, using an ultrasonic sensor.
-  When the camera sees a person, the robot stops and runs a YOLOv8n PPE model
-  (17 SH17 classes, ONNX through onnxruntime) on each frame. It flags a hard
-  hat violation when a bare "head" box with no "helmet" box over it is seen in
-  at least 5 of 10 consecutive frames. When a violation is confirmed, the
-  robot sounds its buzzer, saves the frame as a JPEG plus JSON metadata (the
-  detection boxes and the reason for the call) to an on-disk queue, and
-  uploads it to a Flask/SQLite admin portal, which draws the boxes over the
-  image. The portal
-  lists every violation, and a reviewer marks each one confirmed or false
-  positive. Those review flags are used to compute precision. If no head or
-  helmet is visible, the robot makes no call.
-mock_mode: >
-  "make mock" runs the real vision, rules, tracker and patrol state machine
-  code, with three stand-ins: a simulated car (motors, servos, sonar, buzzer),
-  a still image looped as the camera, and snapshots kept on disk instead of
-  uploaded. The bundled image shows a worker wearing a hard hat, so the
-  expected result is "helmet=PRESENT" on every frame and "violations found 0".
-  To see a violation instead, run "make mock MOCK_IMAGE=path/to/photo.jpg" with
-  a photo of someone without a hard hat; the snapshot lands in
-  Code/Server/snapshots/pending/. "make portal" starts the admin portal and
-  seeds it with 24 synthetic violations.
-notes: >
-  Robot hardware (Raspberry Pi 5, Pi camera, PCA9685 motor/servo board,
-  ultrasonic sensor, buzzer) is required for the physical patrol and
-  is shown in the demo videos. This repo has no microcontroller firmware: the
-  Pi drives the motors and servos directly through the Freenove kit's PCA9685
-  board, so there is nothing to flash. "make compile" byte-compiles every
-  Python source. The vendored C library Code/Libs/rpi-ws281x-python (LED
-  driver) builds only on a Raspberry Pi and is not part of grading. "make
-  models" re-exports the ONNX files; this step is optional, because the
-  exports are already committed in Code/Server/models/. We checked our ONNX
-  decoder against ultralytics' own predict() on an 800x800 photo, with the
-  same resize interpolation on both sides. All 13 detections matched (IoU
-  1.000, identical confidences). Without that change, the detector shrinks
-  images with INTER_AREA where ultralytics uses INTER_LINEAR, so confidences
-  can differ by a few hundredths. The Pi's 640x480 frames are never shrunk,
-  so this does not affect the robot.
-```
-
 ## Project Description
 S.A.F.E.R is an autonomous robot designed to improve workplace safety in industrial and manufacturing environments by scanning workers for required personal protective equipment. The robot patrols a designated area, verifies safety-wear compliance (hard hats by default; safety vests and other SH17 classes can be enabled), and reports violations with photographic evidence to an admin portal for human review.
 
@@ -79,6 +34,8 @@ Diagrams: `Diagrams/*.drawio`. Full design write-up: [`docs/PPE_PATROL.md`](docs
 ## Installation
 
 ### Grader quick start
+Grader commands, `impl_claim` and mock mode are described in [`impl.yaml`](impl.yaml).
+
 ```bash
 git clone https://github.com/SJSU-CMPE-195/group-project-cool-team.git
 cd group-project-cool-team
